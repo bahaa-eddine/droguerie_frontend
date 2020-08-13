@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { GET_PRODUCTS } from '../actions'
+import { Link } from 'react-router-dom'
 
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -9,10 +8,16 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
+import IconButton from '@material-ui/core/IconButton';
 
-import '../style.css'
+import DeleteIcon from '@material-ui/icons/Delete';
+import AddCircleIcon from '@material-ui/icons/AddCircle';
+import CreateIcon from '@material-ui/icons/Create';
 
-class ListProductsComponent extends Component {
+import { ADD_PRODUCT } from '../paths'
+
+export default class ListProductsComponent extends Component {
 
   componentDidMount() {
     this.props.getProducts();
@@ -20,7 +25,6 @@ class ListProductsComponent extends Component {
 
   render() {
     const { fetching, products } = this.props
-    console.log(this.props)
     return (
       (fetching || products === undefined)
         ? <div>Loading ...</div>
@@ -33,7 +37,17 @@ class ListProductsComponent extends Component {
                 <TableCell align="right">Categorie</TableCell>
                 <TableCell align="right">Fragility</TableCell>
                 <TableCell align="right">Price</TableCell>
-                <TableCell align="right"></TableCell>
+                <TableCell align="right">
+                  <Grid container>
+                    <Grid item xs={12}>
+                    <Link to={`${this.props.match.path}/${ADD_PRODUCT}`}>
+                      <IconButton aria-label="update product" component="span">
+                        <AddCircleIcon />
+                      </IconButton>
+                      </Link>
+                    </Grid>
+                  </Grid>
+                </TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -46,6 +60,20 @@ class ListProductsComponent extends Component {
                   <TableCell align="right">{product.fragility}</TableCell>
                   <TableCell align="right">{product.categorie}</TableCell>
                   <TableCell align="right">{product.price}</TableCell>
+                  <TableCell align="right">
+                    <Grid container>
+                      <Grid item xs={8}>
+                        <IconButton color="primary" aria-label="update product" component="span">
+                          <CreateIcon />
+                        </IconButton>
+                      </Grid>
+                      <Grid item xs={4}>
+                        <IconButton color="secondary" aria-label="delete product" component="span">
+                          <DeleteIcon />
+                        </IconButton>
+                      </Grid>
+                    </Grid>
+                  </TableCell>
                 </TableRow>
               ))}
             </TableBody>
@@ -54,19 +82,3 @@ class ListProductsComponent extends Component {
   }
 }
 
-const mapStateTopProps = (state) => {
-  return {
-    products: state.productReducer.products,
-    fetching: state.productReducer.fetching
-  }
-}
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    getProducts: () => {
-      dispatch({ type: GET_PRODUCTS })
-    }
-  }
-}
-
-export default connect(mapStateTopProps, mapDispatchToProps)(ListProductsComponent);

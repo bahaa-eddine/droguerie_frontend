@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { Provider } from 'react-redux';
-import { Route, BrowserRouter, Switch } from 'react-router-dom';
+import { Route, BrowserRouter, Switch, Redirect } from 'react-router-dom';
 
 import HomeComponent from '../home'
 import ProductComponent from '../product'
@@ -18,8 +18,11 @@ class App extends Component {
       <Provider store={store}>
         <BrowserRouter>
           <Switch>
-            <Route exact path='/' component={HomeComponent} />
-            <Route exact path='/products' component={ProductComponent} />
+            <Fragment>
+              <Route exact path='/' component={HomeComponent} />
+              <Route path='/products' component={ProductComponent} />
+            </Fragment>
+            <Redirect from="*" to="/" />
           </Switch>
         </BrowserRouter>
       </Provider>

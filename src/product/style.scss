@@ -1,0 +1,15 @@
+table {
+  min-width: 650,
+}
+
+.MuiTable-root {
+  thead {
+    tr {
+      th {
+        background-color: grey;
+        color:white;
+        font-weight: bold;  
+      }
+    }
+  }
+}

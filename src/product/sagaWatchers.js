@@ -16,7 +16,6 @@ const {
 } = ProductWorkers
 
 export const watchGetProducts = function* () {
-  console.log("watcher products")
   yield takeEvery(GET_PRODUCTS, workerGetProducts);
 }
 

@@ -1,9 +1,16 @@
-import { SET_PRODUCTS } from './actions';
+import { SET_PRODUCTS, GET_PRODUCTS } from './actions';
 
-const productReducer = (state = [], action) => {
+const initialState = {
+  products: [],
+  fetching: false,
+};
+
+const productReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_PRODUCTS:
-      return [...action.value];
+      return {...state, products: action.value,  fetching: false }
+    case GET_PRODUCTS:
+      return { ...state, fetching: true }
     default: return state;
   }
 }

@@ -23,7 +23,7 @@ const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 export const getStore = () => {
   const initialState = {
-    productReducer: [],
+    productReducer: {},
   };
   const reduxSagaMiddleware = reduxSaga();
 

@@ -13,10 +13,8 @@ import {
 const uri = 'http://localhost:8080/products/'
 
 export function* workerGetProducts() {
-  console.log('Get products')
   try {
     const result = yield call(axios.get, uri);
-    console.log(result.data);
     yield put({ type: SET_PRODUCTS, value: result.data.message });
   }
   catch {

@@ -1,6 +1,7 @@
 import React, { Fragment } from "react";
 import { Route, Switch } from 'react-router-dom';
 
+import MenuAppBar from '../includes/appbar/appbarContainer';
 import ListProductsContainer from "./containers/ListProductsContainer";
 import AddProductContainer from "./containers/AddProductContainer";
 import { ADD_PRODUCT } from './paths'
@@ -12,7 +13,7 @@ export default class ProductComponent extends React.Component {
     return (
       <Switch>
         <Fragment>
-          <div>Product</div>
+          <MenuAppBar />
           <Route exact path={this.props.match.path} component={ListProductsContainer} />
           <Route exact path={`${this.props.match.path}/${ADD_PRODUCT}`} component={AddProductContainer} />
         </Fragment>

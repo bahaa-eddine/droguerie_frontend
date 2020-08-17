@@ -19,6 +19,8 @@ import CreateIcon from '@material-ui/icons/Create';
 
 import { ADD_PRODUCT } from '../paths'
 
+import '../style.scss'
+
 export default class ListProductsComponent extends Component {
 
   componentDidMount() {
@@ -33,7 +35,7 @@ export default class ListProductsComponent extends Component {
         :
         <Fragment>
           <CssBaseline />
-          <Container>
+          <Container className="padding-20">
             <TableContainer component={Paper}>
               <Table className="table" aria-label="simple table">
                 <TableHead>

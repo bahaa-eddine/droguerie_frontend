@@ -5,7 +5,7 @@ import { GET_PRODUCTS } from '../actions'
 const mapStateTopProps = (state) => {
   return {
     products: state.productReducer.products,
-    fetching: state.productReducer.fetching
+    fetching: state.productReducer.fetching,
   }
 }
 
